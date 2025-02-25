@@ -33,14 +33,23 @@ class HomeRequest extends FormRequest
             'faiz_derecesi' => 'nullable|numeric|min:0|max:100',
             'makler_pulu' => 'nullable|numeric|min:0',
             'gallery.*' => 'nullable|image|mimes:jpeg,png,jpg,svg|max:2048',
+            'sirketin_pulu' => 'nullable|numeric|min:0',
+            'makler_faiz' => 'nullable|numeric|min:0|max:100',
            
         ];
-        
+                        // `update` əməliyyatı üçün "required" olmayan validasiya
+                        if ($this->isMethod('put') || $this->isMethod('patch')) {
+                            foreach ($rules as $field => $rule) {
+                                $rules[$field] = str_replace('required', 'sometimes', $rule); // "required"-i "sometimes"-lə əvəz edir
+                            }
+                        }
     }
+    
     public function failedValidation(Validator $validator)
 {
     throw new HttpResponseException(response()->json([
         'errors' => $validator->errors(),
     ], 422));
 }
+
 }

@@ -12,7 +12,7 @@
           <div class="x_title">
             <br>
             <br>
-            <h2>Cars Update</h2>
+            <h2>Mənim Profilim</h2>
 
             <div class="clearfix"></div>
           </div>
@@ -25,117 +25,45 @@
 
             </div>
 
-            <form action="" method="POST" id="demo-form2" enctype="multipart/form-data" data-parsley-validate
-              class="form-horizontal form-label-left">
+            <form action="{{ route('admin.profile_update', $users->id) }}" method="POST" enctype="multipart/form-data" class="form-horizontal form-label-left">
+    @csrf
+    @method('PUT')
 
-              <div class="form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Make
-                </label>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                  <input type="text" id="first-name" name="make" value="" class="form-control col-md-7 col-xs-12">
-                </div>
-              </div>
+    <div class="form-group">
+        <label for="name" class="control-label col-md-3 col-sm-3 col-xs-12">Name</label>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <input type="text" id="name" name="name" value="{{ old('name', $users->name) }}" class="form-control col-md-7 col-xs-12">
+        </div>
+    </div>
 
-              <div class="form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Model
-                </label>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                  <input type="text" id="first-name" name="model" value="" class="form-control col-md-7 col-xs-12">
-                </div>
-              </div>
+    <div class="form-group">
+        <label for="email" class="control-label col-md-3 col-sm-3 col-xs-12">Email</label>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <input type="email" id="email" name="email" value="{{ $users->email }}" class="form-control col-md-7 col-xs-12" disabled>
+        </div>
+    </div>
 
-              <div class="form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Price_per_day
-                </label>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                  <input type="text" id="first-name" name="price_per_day" value=""
-                    class="form-control col-md-7 col-xs-12">
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Year
-                </label>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                  <input type="text" id="first-name" name="year" value="" class="form-control col-md-7 col-xs-12">
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Mileage
-                </label>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                  <input type="text" id="first-name" name="mileage" value="" class="form-control col-md-7 col-xs-12">
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Transmission
-                </label>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                  <input type="text" id="first-name" name="transmission" value=""
-                    class="form-control col-md-7 col-xs-12">
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Seats
-                </label>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                  <input type="text" id="first-name" name="seats" value="" class="form-control col-md-7 col-xs-12">
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Luggage
-                </label>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                  <input type="text" id="first-name" name="luggage" value="" class="form-control col-md-7 col-xs-12">
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Fuel
-                </label>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                  <input type="text" id="first-name" name="fuel" value="" class="form-control col-md-7 col-xs-12">
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="description">Description</label>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                  <textarea id="description" name="description" class=" form-control"></textarea>
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="status">
-                  Status
-                </label>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                  <select id="status" name="status" class="form-control col-md-7 col-xs-12">
-                    <option value="active">Aktiv</option>
-                    <option value="inactive">Deaktiv</option>
-                    <option value="pending">Gözləmə</option>
-                  </select>
-                </div>
-              </div>
+    <div class="form-group">
+        <label for="image" class="control-label col-md-3 col-sm-3 col-xs-12">Image</label>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <input type="file" id="image" name="image" class="form-control col-md-7 col-xs-12">
+        </div>
+    </div>
 
-              <div class="form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Image
-                </label>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                  <input type="file" id="first-name" name="image" class="form-control col-md-7 col-xs-12">
-                </div>
-              </div>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+        <img src="{{ Storage::url($users->image) }}" alt="Profil Şəkili" style="max-width: 100%; height: auto;">
+    </div>
 
-              @if($car->image)
-          <div class="col-md-6 col-sm-6 col-xs-12">
-          <img src="" alt="Car Image" style="max-width: 100%; height: auto;">
-          </div>
-        @endif
+    <div class="ln_solid"></div>
 
-              <div class="ln_solid"></div>
-              <div class="form-group">
-                <div align="right" class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                  <button type="submit" name="" class="btn btn-success">Update</button>
-                </div>
-              </div>
+    <div class="form-group">
+        <div align="right" class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+            <button type="submit" class="btn btn-success">Yenilə</button>
+        </div>
+    </div>
+</form>
 
-            </form>
+
 
           </div>
         </div>

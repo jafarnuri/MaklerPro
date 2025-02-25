@@ -13,12 +13,12 @@
                     <div class="x_title">
                         <br>
                         <br>
-                        <h2>Satilmis Mənzillər</h2>
+                        <h2>Obyektlər</h2>
 
                         <div class="clearfix"></div>
 
                         <div align="right">
-                            <a href="{{route('admin.home_create')}}"><button class="btn btn-success btn-xs">Yeni Əlavə Et</button></a>
+                            <a href="{{route('admin.shop_create')}}"><button class="btn btn-success btn-xs">Yeni Əlavə Et</button></a>
                         </div>
                     </div>
                     <div class="x_content">
@@ -48,10 +48,7 @@
                                         <th>M.S</th>
                                         <th>Tel</th>
                                         <th>Üunvan</th>
-                                        <th>Y.O</th>
-                                        <th>H.O</th>
                                         <th>Sahə</th>
-                                        <th>Növ</th>
                                         <th>Tip</th>
                                         <th>Qiymət</th>
                                         <th>M faizi</th>
@@ -59,87 +56,78 @@
                                         <th>Ş faizi</th>
                                         <th>Ş pulu</th>
                                         <th>Məlumat</th>
-                                        <th>icra</th>
-
+                                        <th>İcra</th>
+                                        
                                     </tr>
                                 </thead>
 
                                 <tbody>
-
-
-                                    @if($homes->isEmpty())
-                                    <tr>
-                                        <td colspan="14" class="text-center">Mənzil yoxdur</td>
-                                    </tr>
-                                    @else
-                                    @foreach ($homes as $home)
+                                    @foreach ($shop as $shops)
                                     <tr>
                                         <td width="20">{{$say}}</td>
                                         <td>
                                             <div class="image-container">
-                                                <img src="{{ Storage::url($home->image) }}" alt="Blog Image" class="custom-image" data-toggle="modal" data-target="#galleryModal{{$home->id}}">
+                                                <img src="{{ Storage::url($shops->image) }}" alt="Blog Image" class="custom-image" data-toggle="modal" data-target="#galleryModal{{$shops->id}}">
                                             </div>
                                         </td>
-                                        <td>{{$home->user->name}}</td>
-                                        <td>{{$home->title}}</td>
-                                        <td>{{$home->owner_name}}</td>
-                                        <td>{{$home->owner_contact}}</td>
-                                        <td>{{$home->address}}</td>
-                                        <td>{{$home->rooms}}</td>
-                                        <td>{{$home->bathrooms}}</td>
-                                        <td>{{$home->area.$home->area_unit}}</td>
-                                        <td>{{$home->house_type}}</td>
-                                        <td>{{$home->sale_type}}</td>
-                                        <td>{{$home->price}}</td>
-                                        <td>{{$home->makler_faiz}}%</td>
-                                        <td>{{$home->makler_pulu}}Azn</td>
-                                        <td>{{$home->faiz_derecesi}}%</td>
-                                        <td>{{$home ->sirketin_pulu}}Azn</td>
+                                        <td>{{$shops->user->name}}</td>
+                                        <td>{{$shops->title}}</td>
+                                        <td>{{$shops->owner_name}}</td>
+                                        <td>{{$shops->owner_contact}}</td>
+                                        <td>{{$shops->address}}</td>
+                                        <td>{{$shops->area.$shops->area_unit}}</td>
+                                        <td>{{$shops->sale_type}}</td>
+                                        <td>{{$shops->price}}</td>
+                                        <td>{{$shops->makler_faiz}}%</td>
+                                        <td>{{$shops->makler_pulu}}Azn</td>
+                                        <td>{{$shops->faiz_derecesi}}%</td>
+                                        <td>{{$shops->sirketin_pulu}}Azn</td>
                                         <td>
                                             <!-- Description textini göstərmək üçün Read More linki -->
-                                            <a href="#" data-toggle="modal" data-target="#descriptionModal{{$home->id}}">Read More</a>
+                                            <a href="#" data-toggle="modal" data-target="#descriptionModal{{$shops->id}}">Read More</a>
 
                                             <!-- Modal -->
-                                            <div class="modal fade" id="descriptionModal{{$home->id}}" tabindex="-1" role="dialog" aria-labelledby="descriptionModalLabel{{$home->id}}" aria-hidden="true">
+                                            <div class="modal fade" id="descriptionModal{{$shops->id}}" tabindex="-1" role="dialog" aria-labelledby="descriptionModalLabel{{$shops->id}}" aria-hidden="true">
                                                 <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h5 class="modal-title" id="descriptionModalLabel{{$home->id}}">Description</h5>
+                                                            <h5 class="modal-title" id="descriptionModalLabel{{$shops->id}}">Description</h5>
                                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                 <span aria-hidden="true">&times;</span>
                                                             </button>
                                                         </div>
                                                         <div class="modal-body">
                                                             <!-- Tam description mətni burada göstəriləcək -->
-                                                            <p>{{$home->description}}</p>
+                                                            <p>{{$shops->description}}</p>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </td>
-                                        @if (empty($home->makler_pulu) || $home->makler_pulu === 0)
+
                                         <td class="">
                                             <div class="button-wrapper">
-                                                <a href="{{ route('admin.home_makler_faiz', $home->id) }}" class="btn btn-info">Makler Faizi </a>
-
+                                                <a href="{{ route('admin.shop_edit', $shops->id) }}" class="btn btn-info">Yenilə</a>
+                                                <a href="{{ route('admin.shop_delete', $shops->id) }}" class="btn btn-danger" onclick="return confirm('Are You Sure To Delete This Item?')">Sil</a>
                                             </div>
                                         </td>
-                                        @endif
+
+
                                     </tr>
 
                                     <!-- Modal for Gallery -->
-                                    <div class="modal fade" id="galleryModal{{$home->id}}" tabindex="-1" role="dialog" aria-labelledby="galleryModalLabel{{$home->id}}" aria-hidden="true">
+                                    <div class="modal fade" id="galleryModal{{$shops->id}}" tabindex="-1" role="dialog" aria-labelledby="galleryModalLabel{{$shops->id}}" aria-hidden="true">
                                         <div class="modal-dialog modal-lg" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="galleryModalLabel{{$home->id}}">Galereya Şəkilləri</h5>
+                                                    <h5 class="modal-title" id="galleryModalLabel{{$shops->id}}">Galereya Şəkilləri</h5>
                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    @if($home->gallery->isNotEmpty())
-                                                    @foreach ($home->gallery as $galleryImage)
+                                                    @if($shops->gallery->isNotEmpty())
+                                                    @foreach ($shops->gallery as $galleryImage)
                                                     <img src="{{ Storage::url($galleryImage->image) }}" alt="Gallery Image" class="img-fluid mb-3">
                                                     @endforeach
                                                     @else
@@ -152,7 +140,6 @@
 
                                     <input type="hidden" {{$say++}}>
                                     @endforeach
-                                    @endif
                                 </tbody>
                             </table>
                         </div> <!-- table-responsive div end -->

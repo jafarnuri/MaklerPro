@@ -13,7 +13,7 @@
                     <div class="x_title">
                         <br>
                         <br>
-                        <h2>Satilmis Mənzillər</h2>
+                        <h2>Menim Mənzillər</h2>
 
                         <div class="clearfix"></div>
 
@@ -59,19 +59,11 @@
                                         <th>Ş faizi</th>
                                         <th>Ş pulu</th>
                                         <th>Məlumat</th>
-                                        <th>icra</th>
-
+                                        <th>İcra</th>
                                     </tr>
                                 </thead>
 
                                 <tbody>
-
-
-                                    @if($homes->isEmpty())
-                                    <tr>
-                                        <td colspan="14" class="text-center">Mənzil yoxdur</td>
-                                    </tr>
-                                    @else
                                     @foreach ($homes as $home)
                                     <tr>
                                         <td width="20">{{$say}}</td>
@@ -94,7 +86,7 @@
                                         <td>{{$home->makler_faiz}}%</td>
                                         <td>{{$home->makler_pulu}}Azn</td>
                                         <td>{{$home->faiz_derecesi}}%</td>
-                                        <td>{{$home ->sirketin_pulu}}Azn</td>
+                                        <td>{{$home->sirketin_pulu}}Azn</td>
                                         <td>
                                             <!-- Description textini göstərmək üçün Read More linki -->
                                             <a href="#" data-toggle="modal" data-target="#descriptionModal{{$home->id}}">Read More</a>
@@ -117,14 +109,13 @@
                                                 </div>
                                             </div>
                                         </td>
-                                        @if (empty($home->makler_pulu) || $home->makler_pulu === 0)
+
                                         <td class="">
                                             <div class="button-wrapper">
-                                                <a href="{{ route('admin.home_makler_faiz', $home->id) }}" class="btn btn-info">Makler Faizi </a>
-
+                                                <a href="{{ route('admin.home_edit', $home->id) }}" class="btn btn-info">Yenilə</a>
+                                                <a href="{{ route('admin.home_delete', $home->id) }}" class="btn btn-danger" onclick="return confirm('Are You Sure To Delete This Item?')">Sil</a>
                                             </div>
                                         </td>
-                                        @endif
                                     </tr>
 
                                     <!-- Modal for Gallery -->
@@ -152,7 +143,6 @@
 
                                     <input type="hidden" {{$say++}}>
                                     @endforeach
-                                    @endif
                                 </tbody>
                             </table>
                         </div> <!-- table-responsive div end -->

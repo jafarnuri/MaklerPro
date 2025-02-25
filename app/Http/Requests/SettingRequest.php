@@ -5,7 +5,8 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
-class ShopRequest extends FormRequest
+
+class SettingRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -20,27 +21,13 @@ class ShopRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
-   
     public function rules(): array
     {
         return [
-            'user_id' => 'nullable|integer',
-            'title' => 'nullable|string|max:255',
-            'description' => 'nullable|string',
-            'price' => 'nullable|numeric',
-            'area' => 'nullable|numeric',
-            'area_unit' => 'nullable|string|max:50',
-            'address' => 'nullable|string|max:255',
+
+            'name' => 'nullable|string',
+            'footer' => 'nullable|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'status' => 'nullable|string|max:50',
-            'sale_type' => 'nullable|string|max:50|in:sale,rent',
-            'owner_name' => 'nullable|string|max:255',
-            'owner_contact' => 'nullable|string|max:255',
-            'faiz_derecesi' => 'nullable|numeric|min:0|max:100',
-            'makler_pulu' => 'nullable|numeric|min:0',
-            'gallery.*' => 'nullable|image|mimes:jpeg,png,jpg,svg|max:2048',
-           'sirketin_pulu' => 'nullable|numeric|min:0',
-            'makler_faiz' => 'nullable|numeric|min:0|max:100',
         ];
                         // `update` əməliyyatı üçün "required" olmayan validasiya
                         if ($this->isMethod('put') || $this->isMethod('patch')) {
@@ -49,11 +36,10 @@ class ShopRequest extends FormRequest
                             }
                         }
     }
-    
     public function failedValidation(Validator $validator)
-{
-    throw new HttpResponseException(response()->json([
-        'errors' => $validator->errors(),
-    ], 422));
-}
+    {
+        throw new HttpResponseException(response()->json([
+            'errors' => $validator->errors(),
+        ], 422));
+    }
 }

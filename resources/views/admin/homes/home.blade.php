@@ -27,50 +27,51 @@
                         <input type="hidden" {{$say = 1}}>
 
                         <div class="table-responsive"> <!-- Bu div ilə cədvəli sürüşdürə biləcəyik -->
+                            @if(session('error'))
+                            <div class="alert alert-danger">
+                                {{ session('error') }}
+                            </div>
+                            @elseif(session('success'))
+                            <div class="alert alert-success">
+                                {{ session('success') }}
+                            </div>
+                            @endif
+
                             <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap"
-                                   cellspacing="0" width="100%">
+                                cellspacing="0" width="100%">
                                 <thead>
                                     <tr>
-                                        <th>Nömrə</th>
+                                        <th>№</th>
                                         <th>Şəkil</th>
-                                        <th>Ümumi Şəkillər</th>
-                                        <th>Status</th>
-                                        <th>Makler Ad</th>
+                                        <th>M.Ad</th>
                                         <th>Başlıq</th>
-                                        <th>Sahibkar</th>
-                                        <th>Telefon</th>
-                                        <th>Adress</th>
-                                        <th>Otaq sayı</th>
-                                        <th>Hamam otağı</th>
-                                        <th>Sahəsi</th>
+                                        <th>M.S</th>
+                                        <th>Tel</th>
+                                        <th>Üunvan</th>
+                                        <th>Y.O</th>
+                                        <th>H.O</th>
+                                        <th>Sahə</th>
                                         <th>Növ</th>
-                                        <th>Kateqoriya</th>
+                                        <th>Tip</th>
                                         <th>Qiymət</th>
-                                        <th>Makler faizi</th>
-                                        <th>Makler pulu</th>
-                                        <th>Ümumi məlumat</th>
-                                        <th>Əməliyyatlar</th>
+                                        <th>M faizi</th>
+                                        <th>M pulu</th>
+                                        <th>Ş faizi</th>
+                                        <th>Ş pulu</th>
+                                        <th>Məlumat</th>
+                                        <th>İcra</th>
                                     </tr>
                                 </thead>
 
                                 <tbody>
-                                   @foreach ($homes as $home)
+                                    @foreach ($homes as $home)
                                     <tr>
                                         <td width="20">{{$say}}</td>
-                                        <td><img src="{{ Storage::url($home->image) }}" alt="Blog Image" class="custom-image"> </td>
                                         <td>
-                                            <button class="btn btn-info" data-toggle="modal" data-target="#galleryModal{{$home->id}}">Galereya</button>
+                                            <div class="image-container">
+                                                <img src="{{ Storage::url($home->image) }}" alt="Blog Image" class="custom-image" data-toggle="modal" data-target="#galleryModal{{$home->id}}">
+                                            </div>
                                         </td>
-                                        <td>
-    @if($home->status == 'qalir')
-        <span class="badge badge-success">Qalır</span>
-    @elseif($home->status == 'satildi')
-        <span class="badge badge-danger">Satıldı</span>
-    @elseif($home->status == 'verildi')
-        <span class="badge badge-primary">İcarəyə Verildi</span>
-  
-    @endif
-</td>
                                         <td>{{$home->user->name}}</td>
                                         <td>{{$home->title}}</td>
                                         <td>{{$home->owner_name}}</td>
@@ -82,13 +83,41 @@
                                         <td>{{$home->house_type}}</td>
                                         <td>{{$home->sale_type}}</td>
                                         <td>{{$home->price}}</td>
-                                        <td>{{$home->faiz_derecesi}}%</td>
+                                        <td>{{$home->makler_faiz}}%</td>
                                         <td>{{$home->makler_pulu}}Azn</td>
-                                        <td>{{$home->description}}</td>
-                                        <td class="action-column">
-                                            <a href="" class="btn btn-info">Yenilə</a>
-                                            <a href="" class="btn btn-danger" onclick="return confirm('Are You Sure To Delete This Item?')">Sil</a>
+                                        <td>{{$home->faiz_derecesi}}%</td>
+                                        <td>{{$home->sirketin_pulu}}Azn</td>
+                                        <td>
+                                            <!-- Description textini göstərmək üçün Read More linki -->
+                                            <a href="#" data-toggle="modal" data-target="#descriptionModal{{$home->id}}">Read More</a>
+
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="descriptionModal{{$home->id}}" tabindex="-1" role="dialog" aria-labelledby="descriptionModalLabel{{$home->id}}" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="descriptionModalLabel{{$home->id}}">Description</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <!-- Tam description mətni burada göstəriləcək -->
+                                                            <p>{{$home->description}}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </td>
+
+                                        <td class="">
+                                            <div class="button-wrapper">
+                                                <a href="{{ route('admin.home_edit', $home->id) }}" class="btn btn-info">Yenilə</a>
+                                                <a href="{{ route('admin.home_delete', $home->id) }}" class="btn btn-danger" onclick="return confirm('Are You Sure To Delete This Item?')">Sil</a>
+                                            </div>
+                                        </td>
+
+
                                     </tr>
 
                                     <!-- Modal for Gallery -->
@@ -103,11 +132,11 @@
                                                 </div>
                                                 <div class="modal-body">
                                                     @if($home->gallery->isNotEmpty())
-                                                        @foreach ($home->gallery as $galleryImage)
-                                                            <img src="{{ Storage::url($galleryImage->image) }}" alt="Gallery Image" class="img-fluid mb-3">
-                                                        @endforeach
+                                                    @foreach ($home->gallery as $galleryImage)
+                                                    <img src="{{ Storage::url($galleryImage->image) }}" alt="Gallery Image" class="img-fluid mb-3">
+                                                    @endforeach
                                                     @else
-                                                        <p>Bu evə aid qalereya şəkili yoxdur.</p>
+                                                    <p>Bu evə aid qalereya şəkili yoxdur.</p>
                                                     @endif
                                                 </div>
                                             </div>

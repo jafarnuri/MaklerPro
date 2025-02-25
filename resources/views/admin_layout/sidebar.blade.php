@@ -3,7 +3,7 @@
     <li class="nav-item">
       <a class="nav-link" href="{{route('admin.home')}}">
         <i class="fa fa-bars"></i>
-        <span class="menu-title">Home</span>
+        <span class="menu-title">Ana Səhifə</span>
       </a>
     </li>
 
@@ -29,7 +29,7 @@
       <div class="collapse" id="form-elements">
         <ul class="nav flex-column sub-menu">
           <li class="nav-item">
-            <a class="nav-link" href="">Mənim Mənzillərim</a>
+            <a class="nav-link" href="{{route('admin.my_home')}}">Mənim Mənzillərim</a>
           </li>
         </ul>
       </div>
@@ -42,7 +42,7 @@
         </ul>
       </div>
 
-        
+
       <div class="collapse" id="form-elements">
         <ul class="nav flex-column sub-menu">
           <li class="nav-item">
@@ -54,7 +54,7 @@
       <div class="collapse" id="form-elements">
         <ul class="nav flex-column sub-menu">
           <li class="nav-item">
-            <a class="nav-link" href="">Bütün Abyektlər</a>
+            <a class="nav-link" href="{{route('admin.shop_show')}}">Bütün Abyektlər</a>
           </li>
         </ul>
       </div>
@@ -62,7 +62,7 @@
       <div class="collapse" id="form-elements">
         <ul class="nav flex-column sub-menu">
           <li class="nav-item">
-            <a class="nav-link" href="">Mənim Abyektlərim</a>
+            <a class="nav-link" href="{{route('admin.my_shop')}}">Mənim Abyektlərim</a>
           </li>
         </ul>
       </div>
@@ -70,7 +70,7 @@
       <div class="collapse" id="form-elements">
         <ul class="nav flex-column sub-menu">
           <li class="nav-item">
-            <a class="nav-link" href="">Satılmış Abyektlər</a>
+            <a class="nav-link" href="{{route('admin.sold_shop')}}">Satılmış Abyektlər</a>
           </li>
         </ul>
       </div>
@@ -78,25 +78,28 @@
       <div class="collapse" id="form-elements">
         <ul class="nav flex-column sub-menu">
           <li class="nav-item">
-            <a class="nav-link" href="">İcarələnmiş Abyektlər</a>
+            <a class="nav-link" href="{{route('admin.rented_shop')}}">İcarələnmiş Abyektlər</a>
           </li>
         </ul>
       </div>
- 
- 
- 
-
     </li>
 
 
- 
+
     <li class="nav-item">
       <a class="nav-link" href="{{route('admin.user_show')}}">
         <i class="fa fa-users"></i>
-        <span class="menu-title">Users</span>
+        <span class="menu-title">Maklerlər</span>
       </a>
     </li>
 
+
+    <li class="nav-item">
+      <a class="nav-link" href="{{ route('admin.setting_edit') }}">
+        <i class="fa fa-cog "></i>
+        <span class="menu-title">Parametrlər</span>
+      </a>
+    </li>
 
 
   </ul>

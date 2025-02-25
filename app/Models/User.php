@@ -21,13 +21,20 @@ class User extends Authenticatable
     {
         $this->attributes['password'] = Hash::make($value);
     }
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-        'role',
-    ];
+    protected $fillable = ['name', 'image', 'email', 'password', 'role'];
 
+
+        // Maklerin əlavə etdiyi evlər (Homes)
+        public function homes()
+        {
+            return $this->hasMany(Home::class, 'user_id');
+        }
+    
+        // Maklerin əlavə etdiyi obyektlər (Shops)
+        public function shops()
+        {
+            return $this->hasMany(Shop::class, 'user_id');
+        }
 }
 
  

@@ -84,3 +84,143 @@ body {
 .badge-danger { background-color: #dc3545; color: white; } /* Qırmızı */
 .badge-primary { background-color: #e600ff; color: white; } /* Mavi */
 
+/* TD-nin içindəkiləri tam ortalayır */
+.action-column {
+    vertical-align: middle; /* TD içindəki elementləri ortalayır */
+    text-align: center; /* Yatayda mərkəzləşdirir */
+    padding: 0; /* Default padding-i sil */
+    height: 100%; /* TD-nin tam hündürlüyünü tutur */
+}
+
+/* Butonların içində olduğu div */
+.button-wrapper {
+    display: flex;
+    flex-direction: column; /* Butonları alt-alta düzür */
+    justify-content: center; /* Şaquli ortalama */
+    align-items: center; /* Yatay ortalama */
+    height: 100%; /* Tam hündürlüyü alır */
+    gap: 10px; /* Butonlar arasında boşluq */
+}
+
+/* Butonlara uyğun stil vermək üçün */
+.btn {
+    display: inline-block;
+    padding: 8px 12px;
+    text-decoration: none;
+    color: white;
+    border-radius: 5px;
+    width: 100px; /* Eyni ölçüdə butonlar */
+    text-align: center;
+}
+
+/* Mavi (Yenilə) butonu */
+.btn-info {
+    background-color: #17a2b8;
+    border: 1px solid #117a8b;
+}
+
+/* Qırmızı (Sil) butonu */
+.btn-danger {
+    background-color: #dc3545;
+    border: 1px solid #b52b3a;
+}
+
+/* Hover effekti */
+.btn-info:hover {
+    background-color: #138496;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+}
+/* `td` içindəki şəkilin mərkəzləşdirilməsi */
+/* `td` içindəki şəkilin mərkəzləşdirilməsi */
+td {
+    vertical-align: middle; /* `td` içindəki elementləri şaquli ortalayır */
+    text-align: center; /* `td` içindəki elementləri üfüqi ortalayır */
+}
+
+/* Şəkil konteynerinin tam hündürlük və enində ortalanması */
+.image-container {
+    display: flex;
+    justify-content: center; /* Şəkili üfüqi mərkəzləşdirir */
+    align-items: center; /* Şəkili şaquli mərkəzləşdirir */
+    height: 100%; /* `td`-nin hündürlüyünə uyğunlaşdırır */
+}
+
+/* Şəkilin özünün tərtibi */
+.custom-image {
+    width: auto; /* Şəkil eni öz orijinal ölçüsünə uyğun olacaq */
+    max-height: 100px; /* Şəkilin hündürlüyünü maksimal olaraq müəyyən et (istəyə uyğun tənzimlənə bilər) */
+}
+
+/* Read More linki */
+a[data-toggle="modal"] {
+    color: #007bff; /* Mavi rəngdə */
+    text-decoration: none; /* Alt xət çəkilməyəcək */
+}
+
+a[data-toggle="modal"]:hover {
+    text-decoration: underline; /* Hover effekti */
+}
+
+
+
+
+
+.modal-header {
+    background-color: #f8f9fa;
+}
+
+.modal-title {
+    font-weight: bold;
+}
+
+.close {
+    color: #000;
+    font-size: 1.5rem;
+}
+
+
+.modal-dialog {
+    max-width: 80%; /* Modalın genişliyini tənzimləyirik */
+    margin: auto;   /* Modalı ekranda mərkəzləşdiririk */
+}
+
+.modal-content {
+    max-height: 80vh; /* Modalın hündürlüyünü tənzimləyirik */
+    overflow-y: hidden; /* Yalnız dikey scrollu aradan qaldırırıq */
+    overflow-x: hidden; /* Üfüqi scrollu tamamilə aradan qaldırırıq */
+}
+
+.modal-body {
+    word-wrap: break-word; /* Mətni kəsib sarmasını təmin edirik */
+    white-space: normal; /* Mətni bir sətirə sıxmağa imkan vermir */
+    padding: 20px; /* Mətni biraz aralı şəkildə göstəririk */
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+    padding: 15px;
+    border-radius: 5px;
+}
+.fixed-logo {
+    width: 150px; /* Şəkilin eni */
+    height: 150px; /* Şəkilin hündürlüyü */
+    max-width: 100%; /* Enin 100% maksimum olmasına imkan verir */
+    max-height: 100%;
+     /* Hündürlüyün 100% maksimum olmasına imkan verir */
+    object-fit: cover; /* Şəkilin uyğunlaşdırılması */
+    object-position: center; /* Mərkəzə yerləşdirilməsi */
+    border-radius: 50%; /* Yuvarlaqlaşdırılması */
+}

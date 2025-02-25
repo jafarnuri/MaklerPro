@@ -17,60 +17,77 @@
             <div class="clearfix"></div>
 
             <div align="right">
-            @if(auth()->check() && auth()->user()->role === 'admin')
-            <a href="{{route('admin.register')}}"><button class="btn btn-success btn-xs">Yeni Makler Əlavə Et</button></a>
-            @endif
-              
+              @if(auth()->check() && auth()->user()->role === 'admin')
+              <a href="{{route('admin.register')}}"><button class="btn btn-success btn-xs">Yeni Makler Əlavə Et</button></a>
+              @endif
+
 
             </div>
           </div>
           <div class="x_content">
 
 
-          
-        <br>
-        <div class="alert alert-success">
-      
 
-        </div>
- 
+            <br>
+            <div class="alert alert-success">
+
+
+            </div>
+
 
 
             <!-- Div İçerik Başlangıç -->
             <input type="hidden" {{$say = '1'}}>
+            @if(session('error'))
+            <div class="alert alert-danger">
+              {{ session('error') }}
+            </div>
+            @endif
 
+            @if(session('success'))
+            <div class="alert alert-success">
+              {{ session('success') }}
+            </div>
+            @endif
             <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap"
               cellspacing="0" width="100%">
               <thead>
                 <tr>
-                  <th>Nomber</th>
-                  <th>Image</th>
-                  <th>Name</th>
+                  <th>№</th>
+                  <th>Şəkil</th>
+                  <th>M.Ad</th>
                   <th>Email</th>
-                  <th>
-                    <center>Delete</center>
-                  </th>
+               
+                  <th>İcra</th>
+                  
                 </tr>
               </thead>
 
               <tbody>
+                @foreach ($users as $user)
+                <tr>
+                  <td width="20">{{$say}}</td>
+                  <td>
+                    <div class="image-container">
+                      <img src="{{ Storage::url($user->image) }}" alt="Blog Image" class="custom-image" data-toggle="modal" data-target="#galleryModal{{$user->id}}">
+                    </div>
+                  </td>
+                  <td>{{$user->name}}</td>
+                  <td>{{$user->email}}</td>
+                 
+                  <td class="">
+                    <div class="button-wrapper">
+                     
+                      <a href="{{ route('admin.delete_user',$user->id ) }}" class="btn btn-danger" onclick="return confirm('Are You Sure To Delete This Item?')">Sil</a>
+                      
+                    </div>
+                  </td>
+                
 
-             
-             <tr>
-            <td width="20"></td>
-            <td><img src="" alt=""> </td>
-            <td></td>
-            <td></td>
-       
-            <td>
-            <center><a href=""><button
-                class="btn btn-danger btn-xs"><i></i></button></a>
-            </center>
-            </td>
-          </tr>
-      
-      
-   
+                </tr>
+
+                <input type="hidden" {{$say++}}>
+                @endforeach
               </tbody>
             </table>
 

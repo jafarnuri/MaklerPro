@@ -11,15 +11,11 @@ class Home extends Model
     
     protected $fillable = [
         'user_id', 'title', 'description', 'price', 'rooms', 
-        'bathrooms','makler_pulu', 'area', 'area_unit', 'address', 'image','status', 'house_type', 'sale_type','owner_name','owner_contact','faiz_derecesi'
+        'bathrooms','makler_pulu', 'area', 'area_unit', 'address', 'image','status',
+         'house_type', 'sale_type','owner_name','owner_contact','faiz_derecesi','sirketin_pulu','makler_faiz'
     
     ];
-    // protected $guarded = ['id'];
-
-    // protected $attributes = [
-    //     'status' => 'default', // Default dəyəri 'default' olaraq təyin edir
-    //     'is_featured' => 'default',
-    // ];
+  
 
     public function gallery()
     {

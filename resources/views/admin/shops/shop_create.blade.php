@@ -12,14 +12,14 @@
                     <div class="x_title">
                         <br>
                         <br>
-                        <h2>Yeni mənzil əlavə et</h2>
+                        <h2>Yeni Obyekt əlavə et</h2>
 
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
 
 
-   <form action="{{route('admin.home_store') }}" method="POST" enctype="multipart/form-data">
+   <form action="{{route('admin.shop_store') }}" method="POST" enctype="multipart/form-data">
     @csrf
 
     <!-- Title -->
@@ -40,16 +40,8 @@
         <input type="text" name="price" class="form-control" step="0.01" >
     </div>
 
-    <!-- Rooms & Bathrooms -->
-    <div class="form-group">
-        <label for="rooms">Otaq sayı</label>
-        <input type="text" name="rooms" class="form-control" >
-    </div>
 
-    <div class="form-group">
-        <label for="bathrooms">Hamam sayı</label>
-        <input type="text" name="bathrooms" class="form-control" >
-    </div>
+
 
     <!-- Area & Unit -->
     <div class="form-group">
@@ -71,22 +63,14 @@
         <input type="text" name="address" class="form-control" >
     </div>
 
-    <!-- House Type -->
-    <div class="form-group">
-        <label for="house_type">Evin tipi</label>
-        <select name="house_type" class="form-control">
-            <option value="heyet evi">Həyət evi</option>
-            <option value="bina evi">Bina evi</option>
-            <option value="bag evi">Bağ evi</option>
-        </select>
-    </div>
+
 
     <!-- Sale Type -->
     <div class="form-group">
         <label for="sale_type">Satış növü</label>
         <select name="sale_type" class="form-control">
-            <option value="satiliq">Satılıq</option>
-            <option value="kiraye">Kirayə</option>
+            <option value="sale">Satılıq</option>
+            <option value="rent">Kirayə</option>
         </select>
     </div>
 
@@ -110,12 +94,12 @@
 
     <!-- Owner Name & Contact -->
     <div class="form-group">
-        <label for="owner_name">Mənzil Sahibinin Adı</label>
+        <label for="owner_name">Obyekt Sahibinin Adı</label>
         <input type="text" name="owner_name" class="form-control">
     </div>
 
     <div class="form-group">
-        <label for="owner_contact">Mənzil Sahibinin Əlaqə Nömrəsi</label>
+        <label for="owner_contact">Obyekt Sahibinin Əlaqə Nömrəsi</label>
         <input type="text" name="owner_contact" class="form-control">
     </div>
 

@@ -25,6 +25,22 @@
 
             <div class="form-content">
                 <h2>SIGNUP</h2>
+                @if(session('error'))
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>Xəta! </strong> {{ session('error') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                @elseif(session('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>Təbriklər! </strong> {{ session('success') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                @endif
+
                 <form action="{{route('admin.postregister')}}" method="POST">
                     @csrf
 
@@ -33,7 +49,7 @@
                         <input type="text" name="name" value="" required>
                         <label>Adınızı yazın</label>
                         @error('name')
-                            <div class="error text-danger"></div>
+                        <div class="error text-danger"></div>
                         @enderror
                     </div>
 
@@ -42,7 +58,7 @@
                         <input type="email" name="email" value="" required>
                         <label>Emailnizi yazın</label>
                         @error('email')
-                            <div class="error text-danger"></div>
+                        <div class="error text-danger"></div>
                         @enderror
                     </div>
 
@@ -51,7 +67,7 @@
                         <input type="password" name="password" required>
                         <label>Şifrənizi yazın</label>
                         @error('password')
-                            <div class="error text-danger"></div>
+                        <div class="error text-danger"></div>
                         @enderror
                     </div>
 
@@ -60,20 +76,13 @@
                         <input id="confirm_password" type="password" name="password_confirmation" required>
                         <label for="confirm_password">Şifrəni təkrar yazın</label>
                         @error('password_confirmation')
-                            <div class="error text-danger"></div>
+                        <div class="error text-danger"></div>
                         @enderror
                     </div>
 
                     <div class="input-field">
-        <label for="role"></label>
-        <select name="role" required>
-            <option value="user">Makler</option>
-            <option value="admin">Admin</option>
-        </select>
-        @error('role')
-            <div class="error text-danger"></div>
-        @enderror
-    </div>
+                        <input type="hidden" name="role" value="user">
+                    </div>
 
                     <button type="submit">Sign Up</button>
                 </form>
