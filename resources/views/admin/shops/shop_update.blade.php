@@ -47,12 +47,13 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="area_unit">Sahə vahidi</label>
-                                <select name="area_unit" class="form-control">
-                                    <option value="m²" {{ $shop->area_unit == 'm²' ? 'selected' : '' }}>m²</option>
-                                    <option value="ft²" {{ $shop->area_unit == 'ft²' ? 'selected' : '' }}>ft²</option>
-                                </select>
-                            </div>
+    <label for="area_unit">Sahə vahidi</label>
+    <select name="area_unit" class="form-control select-responsive">
+        <option value="m²" {{ $shop->area_unit == 'm²' ? 'selected' : '' }}>m²</option>
+        <option value="ft²" {{ $shop->area_unit == 'ft²' ? 'selected' : '' }}>ft²</option>
+    </select>
+</div>
+
 
                             <!-- Address -->
                             <div class="form-group">

@@ -215,12 +215,37 @@ a[data-toggle="modal"]:hover {
     border-radius: 5px;
 }
 .fixed-logo {
-    width: 150px; /* Şəkilin eni */
-    height: 150px; /* Şəkilin hündürlüyü */
+    width: auto; /* Şəkilin eni */
+    height: auto; /* Şəkilin hündürlüyü */
     max-width: 100%; /* Enin 100% maksimum olmasına imkan verir */
     max-height: 100%;
      /* Hündürlüyün 100% maksimum olmasına imkan verir */
     object-fit: cover; /* Şəkilin uyğunlaşdırılması */
     object-position: center; /* Mərkəzə yerləşdirilməsi */
-    border-radius: 50%; /* Yuvarlaqlaşdırılması */
+ 
+}
+table {
+    text-align: left; /* Bütün məzmunu soldan başlatmaq */
+}
+
+th, td {
+    text-align: left;
+    
+}
+td {
+    font-family: Arial, sans-serif; /* İstədiyin fontu yaz */
+    font-size: 14px; /* Font ölçüsünü təyin et */
+    font-weight:normal; /* Lazım olsa qalın et */
+}
+a button {
+    width: 160px !important; /* En */
+    height: 50px; /* Hündürlük */
+    padding: 10px 20px; /* Daxili boşluq */
+    font-size: 14px !important; /* Yazının ölçüsünü böyüdür */
+    font-weight: bold !important; 
+}
+.card-body p {
+    font-size: 14px; /* TD elementlərindəki yazı ölçüsünə uyğunlaşdırmaq */
+    font-weight: bold; /* TD yazılarının qalınlığını saxlamaq */
+    text-align: left; /* Yazıları sola düzülmək */
 }

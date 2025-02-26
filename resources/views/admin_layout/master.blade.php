@@ -22,7 +22,7 @@
   <!-- inject:css -->
   <link rel="stylesheet" href="{{asset('/')}}admin/css/vertical-layout-light/style.css">
   <!-- endinject -->
-  <link rel="shortcut icon" href="{{asset('/')}}admin/images/favicon.png" />
+  <link rel="shortcut icon" href="{{ Storage::url($siteName->image) }}" />
   <link rel="stylesheet" href="{{asset('/')}}admin/css/filecss.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">

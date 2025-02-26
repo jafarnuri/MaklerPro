@@ -1,6 +1,6 @@
 <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
 <div class="text-center navbar-brand-wrapper ">
-    <a class=" brand-logo mr-5" href="">
+    <a class=" brand-logo mr-5" href="{{route('admin.home')}}">
         <img src="{{ Storage::url($siteName->image) }}" class="mr-2 fixed-logo" alt="logo" />
     </a>
 </div>

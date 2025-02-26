@@ -24,14 +24,14 @@
 
     <!-- Title -->
     <div class="form-group">
-        <label for="title">Başlıq</label>
-        <input type="text" name="title" class="form-control" value="{{ old('title',$setting->name ) }}">
+        <label for="name">Başlıq</label>
+        <input type="text" name="name" class="form-control" value="{{ old('title',$setting->name ) }}">
     </div>
 
 
     <!-- Title -->
     <div class="form-group">
-        <label for="title">Aciqlama</label>
+        <label for="footer">Aciqlama</label>
         <input type="text" name="footer" class="form-control" value="{{ old('footer',$setting->footer) }}">
     </div>
 
